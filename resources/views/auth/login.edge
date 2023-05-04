@@ -1,0 +1,48 @@
+@layout('layouts/app')
+
+@section('content')
+  <div class="columns">
+    <div class="column is-8 is-offset-2">
+      <div class="box">
+        <h2 class="title has-text-centered">Login</h2>
+        @if(flashMessages.has('notification'))
+          <div class="notification is-danger is-light">
+            {{ flashMessages.get('notification') }}
+          </div>
+        @endif
+        <form action="/login" method="post">
+          {{ csrfField() }}
+          <div class="field">
+            <label class="label">Email</label>
+
+            <div class="control">
+              <input 
+                type="email" 
+                name="email" id="email" 
+                class="input"
+                value="{{ flashMessages.get('email') || ''}}"
+                required
+              >
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Password</label>
+
+            <div class="control">
+              <input 
+                type="password" 
+                name="password" id="password" 
+                class="input"
+                required
+              >
+            </div>
+          </div>
+
+          <div class="control">
+            <button type="submit" class="button is-link is-fullwidth">Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+@endsection
